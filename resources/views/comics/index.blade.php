@@ -5,25 +5,27 @@
     <h2>List of Comics</h2>
 
     {{-- Tabella fumetti --}}
-    <table class="table">
+    <table class="table text-white">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Peso</th>
-            <th scope="col">Tempo cottura</th>
-            <th scope="col">Azioni</th>
+            <th scope="col">#</th> 
+            <th scope="col">Title</th>
+            <th scope="col">Series</th>
+            <th scope="col">Sale Date</th>
+            <th scope="col">Type</th>
+            <th scope="col">View</th>
           </tr>
         </thead>
         <tbody>
-        @foreach ($products as $product) 
+        @foreach ($comics as $comic) 
           <tr>
-            <td>{{$product->id}}</td>
-            <td>{{$product->name}}</td>
-            <td>{{$product->weight}}</td>
-            <td>{{$product->cooking_time}}</td>
+            <td>{{$comic->id}}</td>
+            <td>{{$comic->title}}</td>
+            <td>{{$comic->series}}</td>
+            <td>{{$comic->sale_date}}</td>
+            <td>{{$comic->type}}</td>
             <td>
-                <a href="{{route("products.show", $product->id)}}"><button type="button" class="btn btn-primary">Visualizza</button></a>
+                <a href="{{route("comics.show", $comic->id)}}"><button type="button" class="btn btn-danger">Show</button></a>
             </td>
           </tr>
           @endforeach
