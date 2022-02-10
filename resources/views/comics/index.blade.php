@@ -28,7 +28,7 @@
             <td>{{$comic->type}}</td>
             <td>
                 <a href="{{route("comics.show", $comic->id)}}"><button type="button" class="btn btn-outline-light">Show</button></a>
-                <a href="{{route("comics.show", $comic->id)}}"><button type="button" class="btn btn-outline-warning m-1">Chage</button></a>
+                <a href="{{route("comics.edit", $comic->id)}}"><button type="button" class="btn btn-outline-warning m-1">Edit</button></a>
                 <a href="{{route("comics.show", $comic->id)}}"><button type="button" class="btn btn-danger">Delete</button></a>
             </td>
             </td>

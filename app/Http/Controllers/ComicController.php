@@ -73,9 +73,10 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comic $comic)
     {
-        //
+        //Riporta solo all'itinerario dove si trovano i dati
+        return view("comics.edit", compact("comic"));
     }
 
     /**
@@ -85,9 +86,24 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic)
     {
-        //
+         // Mi predo i dati dal form
+         $dataComic = $request->all();
+
+        // Inserisco i dati recupoerati dal form nella tabella del mio DB
+        $newComic = new Comic();
+        $newComic->title = $dataComic["title"];
+        $newComic->description = $dataComic["description"];
+        $newComic->thumb = $dataComic["thumb"];
+        $newComic->price = $dataComic["price"];
+        $newComic->series = $dataComic["series"];
+        $newComic->sale_date = $dataComic["sale_date"];
+        $newComic->type = $dataComic["type"];
+        $newComic->save();
+
+        // restituisco la route show con il nuovo elemento creato.
+        return redirect()->route('comics.show', $newComic->id);
     }
 
     /**
