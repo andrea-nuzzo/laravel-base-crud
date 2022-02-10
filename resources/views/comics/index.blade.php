@@ -4,6 +4,8 @@
     {{-- Titolo --}}
     <h2>List of Comics</h2>
 
+    <a href="{{route("comics.create")}}"><button type="button" class="btn btn-success m-3">Create</button></a>
+
     {{-- Tabella fumetti --}}
     <table class="table text-white">
         <thead>
@@ -25,7 +27,10 @@
             <td>{{$comic->sale_date}}</td>
             <td>{{$comic->type}}</td>
             <td>
-                <a href="{{route("comics.show", $comic->id)}}"><button type="button" class="btn btn-danger">Show</button></a>
+                <a href="{{route("comics.show", $comic->id)}}"><button type="button" class="btn btn-outline-light">Show</button></a>
+                <a href="{{route("comics.show", $comic->id)}}"><button type="button" class="btn btn-outline-warning m-1">Chage</button></a>
+                <a href="{{route("comics.show", $comic->id)}}"><button type="button" class="btn btn-danger">Delete</button></a>
+            </td>
             </td>
           </tr>
           @endforeach

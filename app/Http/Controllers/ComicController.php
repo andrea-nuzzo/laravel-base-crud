@@ -26,7 +26,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view("comics.create");
     }
 
     /**
@@ -36,8 +36,24 @@ class ComicController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        // Mi predo i dati dal form
+         $dataComic = $request->all();
+
+        // Inserisco i dati recupoerati dal form nella tabella del mio DB
+        $newComic = new Comic();
+        $newComic->title = $dataComic["title"];
+        $newComic->description = $dataComic["description"];
+        $newComic->thumb = $dataComic["thumb"];
+        $newComic->price = $dataComic["price"];
+        $newComic->series = $dataComic["series"];
+        $newComic->sale_date = $dataComic["sale_date"];
+        $newComic->type = $dataComic["type"];
+        $newComic->save();
+
+        // restituisco la route show con il nuovo elemento creato.
+        return redirect()->route('comics.show', $newComic->id);
+
     }
 
     /**
