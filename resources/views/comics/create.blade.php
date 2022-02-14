@@ -62,8 +62,8 @@
         <input type="date" class="form-control @error('sale_date') is-invalid @enderror mb-3" id="sale_date" name="sale_date" placeholder="Add the link to the image" value="{{old("sale_date")}}">
 
         @error('sale_date')
-        <div class="alert alert-danger">{{ $message }}</div>
-       @enderror
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
     </div>
 
     {{-- +++ Type +++ --}}

@@ -7,6 +7,17 @@ use App\Comic;
 
 class ComicController extends Controller
 {
+    protected $validationComics = 
+    [
+        "title" => "required|string|max:255",
+        "description" => "nullable|string",
+        "thumb" => "required|string|max:255",
+        "price" => "required|numeric|between:0,9999999.99",
+        "series" => "nullable|string|max:100",
+        "sale_date" => "nullable|date",
+        "type" => "required|string|max:100",
+    ];
+    
     /**
      * Display a listing of the resource.
      *
@@ -41,15 +52,7 @@ class ComicController extends Controller
          $dataComic = $request->all();
         
         // *----- Validation -----*
-        $request->validate([
-            "title" => "required|string|max:255",
-            "description" => "nullable|string",
-            "thumb" => "required|string|max:255",
-            "price" => "required|numeric|between:0,9999999.99",
-            "series" => "nullable|string|max:100",
-            "sale_date" => "nullable|date",
-            "type" => "required|string|max:100",
-        ]);
+        $request->validate($this->validationComics);
 
         // Avendo inserito il Mass Assignment posso selezionare i dati in maniera massiva.
         $newComic = Comic::create($dataComic);
@@ -90,8 +93,11 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-         // Mi predo i dati dal form
-         $dataComic = $request->all();
+        // Mi predo i dati dal form
+        $dataComic = $request->all();
+        
+        // *----- Validation -----*
+        $request->validate($this->validationComics);
 
         // Avendo inserito il Mass Assignment posso selezionare i dati in maniera massiva.
         $comic->update($dataComic);
