@@ -40,17 +40,8 @@ class ComicController extends Controller
         // Mi predo i dati dal form
          $dataComic = $request->all();
 
-        // Inserisco i dati recupoerati dal form nella tabella del mio DB
-        $newComic = new Comic();
-        $newComic->title = $dataComic["title"];
-        $newComic->description = $dataComic["description"];
-        $newComic->thumb = $dataComic["thumb"];
-        $newComic->price = $dataComic["price"];
-        $newComic->series = $dataComic["series"];
-        $newComic->sale_date = $dataComic["sale_date"];
-        $newComic->type = $dataComic["type"];
-        $newComic->save();
-
+        // Avendo inserito il Mass Assignment posso selezionare i dati in maniera massiva.
+        $newComic = Comic::create($dataComic);
         // restituisco la route show con il nuovo elemento creato.
         return redirect()->route('comics.show', $newComic->id);
 
@@ -91,19 +82,11 @@ class ComicController extends Controller
          // Mi predo i dati dal form
          $dataComic = $request->all();
 
-        // Inserisco i dati recupoerati dal form nella tabella del mio DB
-        $newComic = new Comic();
-        $newComic->title = $dataComic["title"];
-        $newComic->description = $dataComic["description"];
-        $newComic->thumb = $dataComic["thumb"];
-        $newComic->price = $dataComic["price"];
-        $newComic->series = $dataComic["series"];
-        $newComic->sale_date = $dataComic["sale_date"];
-        $newComic->type = $dataComic["type"];
-        $newComic->save();
+        // Avendo inserito il Mass Assignment posso selezionare i dati in maniera massiva.
+        $comic->update($dataComic);
 
         // restituisco la route show con il nuovo elemento creato.
-        return redirect()->route('comics.show', $newComic->id);
+        return redirect()->route('comics.show', $comic->id);
     }
 
     /**
