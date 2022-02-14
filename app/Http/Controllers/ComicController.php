@@ -39,6 +39,17 @@ class ComicController extends Controller
     {   
         // Mi predo i dati dal form
          $dataComic = $request->all();
+        
+        // *----- Validation -----*
+        $request->validate([
+            "title" => "required|string|max:255",
+            "description" => "nullable|string",
+            "thumb" => "required|string|max:255",
+            "price" => "required|numeric|between:0,9999999.99",
+            "series" => "nullable|string|max:100",
+            "sale_date" => "nullable|date",
+            "type" => "required|string|max:100",
+        ]);
 
         // Avendo inserito il Mass Assignment posso selezionare i dati in maniera massiva.
         $newComic = Comic::create($dataComic);
